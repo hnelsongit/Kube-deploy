@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_guest = true
 
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 2
     vb.memory = "1024"
@@ -22,5 +23,6 @@ Vagrant.configure("2") do |config|
       c.vm.network "forwarded_port", guest: 10251, host: 10251
       c.vm.network "forwarded_port", guest: 10252, host: 10252
       c.vm.network "forwarded_port", guest: 10255, host: 10255
-  end
+      c.vm.network "forwarded_port", guest: 6443, host: 6443 
+ end
 end
